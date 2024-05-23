@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CompleteCrudAppWithImagesInDatabase.Models.employe>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p class="text-success">
+    @TempData["insertMessage"]
+    @TempData["UpdateMessage"]
+</p>
+<p>
+    @Html.ActionLink("Create New", "Create" ,"",new {@class = "btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image_path)
+        </th>
+        <th>
+            <p class="text-center">Actions </p>  
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+           <img src="@Url.Content(item.image_path)" height="80", width="80"  />
+        </td>
+        <td class="text-center">
+            @Html.ActionLink("Edit", "Edit", new { id=item.id },new {@class ="btn btn-primary"}) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id }, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>
